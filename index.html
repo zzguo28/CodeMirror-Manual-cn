@@ -24,59 +24,42 @@
   <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="doc/logo.png"></a>
 
   <ul>
-    <li><a class=active data-default="true" href="#description">Home</a>
-    <li><a href="doc/manual.html">Manual</a>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+    <li><a class=active data-default="true" href="#description">首页</a>
+    <li><a href="doc/manual.html">手册</a>
+    <li><a href="https://github.com/codemirror/codemirror">Github-代码</a>
   </ul>
   <ul>
-    <li><a href="#features">Features</a>
-    <li><a href="#community">Community</a>
-    <li><a href="#browsersupport">Browser support</a>
+    <li><a href="#features">特征</a>
+    <li><a href="#community">团队</a>
+    <li><a href="#browsersupport">浏览器支持</a>
   </ul>
 </div>
 
 <article>
 
 <section id=description class=first>
-  <p><strong>CodeMirror</strong> is a versatile text editor
-  implemented in JavaScript for the browser. It is specialized for
-  editing code, and comes with a number of <a href="mode/index.html">language modes</a> and <a href="doc/manual.html#addons">addons</a>
-  that implement more advanced editing functionality.</p>
+  <p><strong>CodeMirror</strong> 是一款使用JavaScript实现，面向浏览器的多功能文本编辑器。 专注于代码编辑, 支持大部分的 <a href="mode/index.html">语言模式</a> 和 <a href="doc/manual.html#addons">插件扩展</a>
+  是可以让您实现更高级编辑器的最佳基础库.</p>
 
-  <p>A rich <a href="doc/manual.html#api">programming API</a> and a
-  CSS <a href="doc/manual.html#styling">theming</a> system are
-  available for customizing CodeMirror to fit your application, and
-  extending it with new functionality.</p>
+  <p>丰富的 <a href="doc/manual.html#api">API</a> 和CSS <a href="doc/manual.html#styling">主题</a>系统 ，通过定制CodeMirror，就能满足您需要的应用程序，扩展它新的功能.</p>
 </section>
 
 <section id=demo>
-  <h2>This is CodeMirror</h2>
+  <h2>CodeMirror简单示例</h2>
+  <p style="font-size:12px;color:#888;">以下是一个简单的CodeMirror编辑器，直接编辑代码体验一下吧。</p>
   <form style="position: relative; margin-top: .5em;"><textarea id=demotext>
-<!-- Create a simple CodeMirror instance -->
+<!--首先添加codemirror.css及codemirror.js -->
 <link rel="stylesheet" href="lib/codemirror.css">
 <script src="lib/codemirror.js"></script>
+
+<!-- 创建编辑器 -->
 <script>
-  var editor = CodeMirror.fromTextArea(myTextarea, {
+  var textareaIdName = document.getElementById("myTextarea");
+  var editor = CodeMirror.fromTextArea(textareaIdName, {
     lineNumbers: true
   });
 </script></textarea>
-  <select id="demolist" onchange="document.location = this.options[this.selectedIndex].value;">
-    <option value="#">Other demos...</option>
-    <option value="demo/complete.html">Autocompletion</option>
-    <option value="demo/folding.html">Code folding</option>
-    <option value="demo/theme.html">Themes</option>
-    <option value="mode/htmlmixed/index.html">Mixed language modes</option>
-    <option value="demo/bidi.html">Bi-directional text</option>
-    <option value="demo/variableheight.html">Variable font sizes</option>
-    <option value="demo/search.html">Search interface</option>
-    <option value="demo/vim.html">Vim bindings</option>
-    <option value="demo/emacs.html">Emacs bindings</option>
-    <option value="demo/sublime.html">Sublime Text bindings</option>
-    <option value="demo/tern.html">Tern integration</option>
-    <option value="demo/merge.html">Merge/diff interface</option>
-    <option value="demo/fullscreen.html">Full-screen editor</option>
-    <option value="demo/simplescrollbars.html">Custom scrollbars</option>
-  </select></form>
+  </form>
   <script>
     var editor = CodeMirror.fromTextArea(document.getElementById("demotext"), {
       lineNumbers: true,
@@ -84,6 +67,26 @@
       matchBrackets: true
     });
   </script>
+</section>
+
+<section>
+  <h3>CodeMirror 更多示例...</h3>
+  <ul class="demo-more">
+      <li><a href="demo/complete.html" target="_blank">自动完成示例</a></li>
+      <li><a href="demo/folding.html" target="_blank">代码折叠示例</a></li>
+      <li><a href="demo/theme.html" target="_blank">各种主题风格</a></li>
+      <li><a href="mode/htmlmixed/index.html" target="_blank">混合模式（html+css+js）</a></li>
+      <li><a href="demo/bidi.html" target="_blank">双向文本展示(Bi-directional text)-阿拉伯语支持</a></li>
+      <li><a href="demo/variableheight.html" target="_blank">字体渲染</a></li>
+      <li><a href="demo/search.html" target="_blank">搜索功能(高亮关键字、替换等)</a></li>
+      <li><a href="demo/vim.html" target="_blank">Vim模式支持(快捷键)</a></li>
+      <li><a href="demo/emacs.html" target="_blank">Emacs模式支持(快捷键)</a></li>
+      <li><a href="demo/sublime.html" target="_blank">Sublime Text模式支持(快捷键)</a></li>
+      <li><a href="demo/tern.html" target="_blank">Tern 整合</a></li>
+      <li><a href="demo/merge.html" target="_blank">合并/差异比较(Merge/diff) </a></li>
+      <li><a href="demo/fullscreen.html" target="_blank">全屏编辑模式</a></li>
+      <li><a href="demo/simplescrollbars.html" target="_blank">定制滚动条</a></li>
+  </ul>
 
   <div class=actions>
     <div class=actionspicture>
@@ -96,16 +99,16 @@
       </div>
     </div>
     <div class=actionsleft>
-      Get the current version: <a href="http://codemirror.net/codemirror.zip">5.19.0</a>.<br>
-      You can see the <a href="https://github.com/codemirror/codemirror" title="Github repository">code</a> or<br>
-      read the <a href="doc/releases.html">release notes</a>.<br>
-      There is a <a href="doc/compress.html">minification helper</a>.
+      获取最新版本: <a href="http://codemirror.net/codemirror.zip">5.19.0</a>.<br>
+      在Github上查阅 <a href="https://github.com/codemirror/codemirror" title="Github repository" target="_blank">代码</a> 或<br>
+      查看 <a href="doc/releases.html" target="_blank">发布说明</a>.<br>
+      这里还有一个 <a href="doc/compress.html" target="_blank">压缩助手</a>.
     </div>
     <div class=actionsright>
-      Software needs maintenance,<br>
-      maintainers need to subsist.<br>
-      Current funding status = <img src="https://marijnhaverbeke.nl/fund/status_s.png" title="Current maintainer happiness" style="vertical-align: middle; height: 16px; width: 16px"><br>
-      You can help <a href="https://marijnhaverbeke.nl/fund/" title="Set up a monthly contribution">per month</a> or
+      软件需要维护,<br>
+      维护人员需要生存.<br>
+      目前的资助状况： <img src="https://marijnhaverbeke.nl/fund/status_s.png" title="Current maintainer happiness" style="vertical-align: middle; height: 16px; width: 16px"><br>
+      请多多支持 <a href="https://marijnhaverbeke.nl/fund/" title="Set up a monthly contribution">per month</a> or
       <a title="Donate with PayPal" href="javascript:document.getElementById('paypal').submit();">once</a>.
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="paypal">
         <input type="hidden" name="cmd" value="_s-xclick"/>
@@ -117,57 +120,48 @@
 </section>
 
 <section id=features>
-  <h2>Features</h2>
+  <h2>特征</h2>
   <ul>
-    <li>Support for <a href="mode/index.html">over 100 languages</a> out of the box
-    <li>A powerful, <a href="mode/htmlmixed/index.html">composable</a> language mode <a href="doc/manual.html#modeapi">system</a>
-    <li><a href="doc/manual.html#addon_show-hint">Autocompletion</a> (<a href="demo/xmlcomplete.html">XML</a>)
-    <li><a href="doc/manual.html#addon_foldcode">Code folding</a>
-    <li><a href="doc/manual.html#option_extraKeys">Configurable</a> keybindings
-    <li><a href="demo/vim.html">Vim</a>, <a href="demo/emacs.html">Emacs</a>, and <a href="demo/sublime.html">Sublime Text</a> bindings
-    <li><a href="doc/manual.html#addon_search">Search and replace</a> interface
-    <li><a href="doc/manual.html#addon_matchbrackets">Bracket</a> and <a href="doc/manual.html#addon_matchtags">tag</a> matching
-    <li>Support for <a href="demo/buffers.html">split views</a>
-    <li><a href="doc/manual.html#addon_lint">Linter integration</a>
-    <li><a href="demo/variableheight.html">Mixing font sizes and styles</a>
-    <li><a href="demo/theme.html">Various themes</a>
-    <li>Able to <a href="demo/resize.html">resize to fit content</a>
-    <li><a href="doc/manual.html#mark_replacedWith">Inline</a> and <a href="doc/manual.html#addLineWidget">block</a> widgets
-    <li>Programmable <a href="demo/marker.html">gutters</a>
-    <li>Making ranges of text <a href="doc/manual.html#markText">styled, read-only, or atomic</a>
-    <li><a href="demo/bidi.html">Bi-directional text</a> support
-    <li>Many other <a href="doc/manual.html#api">methods</a> and <a href="doc/manual.html#addons">addons</a>...
+    <li>编辑器支持 <a href="mode/index.html" target="_blank">超过 100 种语言</a>。</li>
+    <li>强大的<a href="mode/htmlmixed/index.html" target="_blank">混合</a>多语言 <a href="doc/manual.html#modeapi" target="_blank">模式库</a></li>
+    <li><a href="doc/manual.html#addon_show-hint">自动完成</a> (<a href="demo/xmlcomplete.html">XML</a>)</li>
+    <li><a href="doc/manual.html#addon_foldcode">代码折叠</a></li>
+    <li><a href="doc/manual.html#option_extraKeys">自定义</a>键盘快捷键</li>
+    <li><a href="demo/vim.html">Vim</a>, <a href="demo/emacs.html">Emacs</a>, 和 <a href="demo/sublime.html">Sublime Text</a> 编辑器模式</li>
+    <li><a href="doc/manual.html#addon_search">查找与替换</a> 功能</li>
+    <li><a href="doc/manual.html#addon_matchbrackets">括号</a> 和 <a href="doc/manual.html#addon_matchtags">标签</a> 匹配支持</li>
+    <li>支持 <a href="demo/buffers.html">分割视图</a></li>
+    <li><a href="doc/manual.html#addon_lint">Linter集成</a></li>
+    <li><a href="demo/variableheight.html">混合字体的大小和颜色</a></li>
+    <li><a href="demo/theme.html">丰富的主题风格</a></li>
+    <li>可以自动 <a href="demo/resize.html">根据内容改变编辑器的高度</a></li>
+    <li><a href="doc/manual.html#mark_replacedWith">Inline</a> 和 <a href="doc/manual.html#addLineWidget">block</a> 插件</li>
+    <li>可编程的<a href="demo/marker.html">gutters</a></li>
+    <li>为一定范围的文本 <a href="doc/manual.html#markText">添加样式、设为只读、或者原样</a></li>
+    <li><a href="demo/bidi.html">双向文本</a> 支持</li>
+    <li>更多其它的 <a href="doc/manual.html#api">功能</a> 及 <a href="doc/manual.html#addons">扩展插件</a>...</li>
   </ul>
 </section>
 
 <section id=community>
-  <h2>Community</h2>
+  <h2>项目组织</h2>
 
-  <p>CodeMirror is an open-source project shared under
-  an <a href="LICENSE">MIT license</a>. It is the editor used in the
-  dev tools for
-  both <a href="https://hacks.mozilla.org/2013/11/firefox-developer-tools-episode-27-edit-as-html-codemirror-more/">Firefox</a>
-  and <a href="https://developers.google.com/chrome-developer-tools/">Chrome</a>, <a href="http://www.lighttable.com/">Light
-  Table</a>, <a href="http://brackets.io/">Adobe
-  Brackets</a>, <a href="http://blog.bitbucket.org/2013/05/14/edit-your-code-in-the-cloud-with-bitbucket/">Bitbucket</a>,
-  and <a href="doc/realworld.html">many other projects</a>.</p>
+  <p>CodeMirror 是一个开源项目，基于<a href="LICENSE">MIT license</a>协议. 适合于编辑器的二次开发。 <a href="https://hacks.mozilla.org/2013/11/firefox-developer-tools-episode-27-edit-as-html-codemirror-more/">Firefox</a>
+  、 <a href="https://developers.google.com/chrome-developer-tools/">Chrome</a>、<a href="http://www.lighttable.com/">Light
+  Table</a>、 <a href="http://brackets.io/">Adobe
+  Brackets</a>、 <a href="http://blog.bitbucket.org/2013/05/14/edit-your-code-in-the-cloud-with-bitbucket/">Bitbucket</a>,
+  以及 <a href="doc/realworld.html">更多项目</a>.</p>
 
-  <p>Development and bug tracking happens
-  on <a href="https://github.com/codemirror/CodeMirror/">github</a>
+  <p>开发和错误跟踪 <a href="https://github.com/codemirror/CodeMirror/">github</a>
   (<a href="http://marijnhaverbeke.nl/git/codemirror">alternate git
   repository</a>).
-  Please <a href="http://codemirror.net/doc/reporting.html">read these
-  pointers</a> before submitting a bug. Use pull requests to submit
+  请 <a href="http://codemirror.net/doc/reporting.html">阅读指引</a> before submitting a bug. Use pull requests to submit
   patches. All contributions must be released under the same MIT
   license that CodeMirror uses.</p>
 
-  <p>Discussion around the project is done on
-  a <a href="https://discuss.codemirror.net">discussion forum</a>.
-  There is also
-  the <a href="http://groups.google.com/group/codemirror-announce">codemirror-announce</a>
-  list, which is only used for major announcements (such as new
-  versions). If needed, you can
-  contact <a href="mailto:marijnh@gmail.com">the maintainer</a>
+  <p>项目讨论社区 <a href="https://discuss.codemirror.net">discussion forum</a>.
+  还有这个 <a href="http://groups.google.com/group/codemirror-announce">codemirror-announce</a>
+  list, 仅用于重大公告 (例如版本更新). 如果有需要, 您可以发邮件给我们 <a href="mailto:marijnh@gmail.com">marijnh@gmail.com</a>
   directly. We aim to be an inclusive, welcoming community. To make
   that explicit, we have
   a <a href="http://contributor-covenant.org/version/1/1/0/">code of
@@ -180,20 +174,16 @@
 </section>
 
 <section id=browsersupport>
-  <h2>Browser support</h2>
-  <p>The <em>desktop</em> versions of the following browsers,
-  in <em>standards mode</em> (HTML5 <code>&lt;!doctype html></code>
-  recommended) are supported:</p>
+  <h2>浏览器支持</h2>
+  <p>以下浏览器版本，在HTML5标准模式<code>&lt;!doctype html&gt;</code>下支持：</p>
   <table style="margin-bottom: 1em">
-    <tr><th>Firefox</th><td>version 4 and up</td></tr>
+    <tr><th>Firefox</th><td>version 4 及以上</td></tr>
     <tr><th>Chrome</th><td>any version</td></tr>
-    <tr><th>Safari</th><td>version 5.2 and up</td></tr>
-    <tr><th style="padding-right: 1em;">Internet Explorer</th><td>version 8 and up</td></tr>
-    <tr><th>Opera</th><td>version 9 and up</td></tr>
+    <tr><th>Safari</th><td>version 5.2 及以上</td></tr>
+    <tr><th style="padding-right: 1em;">Internet Explorer</th><td>version 8 及以上</td></tr>
+    <tr><th>Opera</th><td>version 9 及以上</td></tr>
   </table>
-  <p>Support for modern mobile browsers is experimental. Recent
-  versions of the iOS browser and Chrome on Android should work
-  pretty well.</p>
+  <p>支持现代移动浏览器。最新的iOS和Android版本的Chrome浏览器均佳。</p>
 </section>
 
 </article>

@@ -141,11 +141,20 @@ section.first {
   position: relative;
 }
 
+.demo-more {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e30808;
+  overflow: hidden;
+}
+
 #demolist {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  z-index: 25;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #ddd;
 }
 
 .yinyang {
