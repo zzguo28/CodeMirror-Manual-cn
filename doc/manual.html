@@ -21,44 +21,45 @@
   dt + dt { margin-top: 0; }
   dt.command { position: relative; }
   span.keybinding { position: absolute; right: 0; font-size: 80%; color: #555; text-indent: 0; }
+  dt strong { text-decoration: none; font-size: 18px; font-weight: 500; color: #00f; }
+  #config dt code {color: #999;}
 </style>
 
 <div id=nav>
-  <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="logo.png"></a>
+  <a href="https://github.com/codemirror/codemirror"><h1>CodeMirror</h1><img id=logo src="logo.png"></a>
   <ul>
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="#overview" class=active data-default="true">Manual</a></li>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a></li>
+    <li><a href="../index.html">首页</a></li>
+    <li><a href="#overview" class=active data-default="true">手册</a></li>
   </ul>
   <ul>
-    <li><a href="#usage">Basic Usage</a></li>
-    <li><a href="#config">Configuration</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#keymaps">Key maps</a></li>
-    <li><a href="#commands">Commands</a></li>
-    <li><a href="#styling">Customized Styling</a></li>
-    <li><a href="#api">Programming API</a>
+    <li><a href="#usage">基础使用</a></li>
+    <li><a href="#config">配置</a></li>
+    <li><a href="#events">事件</a></li>
+    <li><a href="#keymaps">快捷键绑定</a></li>
+    <li><a href="#commands">命令command</a></li>
+    <li><a href="#styling">风格定制</a></li>
+    <li><a href="#api">API 调用</a>
       <ul>
-        <li><a href="#api_constructor">Constructor</a></li>
-        <li><a href="#api_content">Content manipulation</a></li>
-        <li><a href="#api_selection">Selection</a></li>
-        <li><a href="#api_configuration">Configuration</a></li>
-        <li><a href="#api_doc">Document management</a></li>
-        <li><a href="#api_history">History</a></li>
-        <li><a href="#api_marker">Text-marking</a></li>
-        <li><a href="#api_decoration">Widget, gutter, and decoration</a></li>
-        <li><a href="#api_sizing">Sizing, scrolling, and positioning</a></li>
-        <li><a href="#api_mode">Mode, state, and tokens</a></li>
-        <li><a href="#api_misc">Miscellaneous methods</a></li>
-        <li><a href="#api_static">Static properties</a></li>
+        <li><a href="#api_constructor" title="Constructor">创建编辑器</a></li>
+        <li><a href="#api_content" title="Content manipulation">内容编辑</a></li>
+        <li><a href="#api_selection" title="Selection">Selection处理</a></li>
+        <li><a href="#api_configuration" title="Configuration">Configuration</a></li>
+        <li><a href="#api_doc" title="Document management">Document management</a></li>
+        <li><a href="#api_history" title="History">History</a></li>
+        <li><a href="#api_marker" title="Text-marking">Text-marking</a></li>
+        <li><a href="#api_decoration" title="Widget, gutter, and decoration">Widget, gutter, and decoration</a></li>
+        <li><a href="#api_sizing" title="Sizing, scrolling, and positioning">Sizing, scrolling, and positioning</a></li>
+        <li><a href="#api_mode" title="Mode, state, and tokens">Mode, state, and tokens</a></li>
+        <li><a href="#api_misc" title="Miscellaneous methods">Miscellaneous methods</a></li>
+        <li><a href="#api_static" title="Static properties">Static properties</a></li>
       </ul>
     </li>
-    <li><a href="#addons">Addons</a></li>
-    <li><a href="#modeapi">Writing CodeMirror Modes</a></li>
-    <li><a href="#vimapi">Vim Mode API</a>
+    <li><a href="#addons" title="Addons">Addons</a></li>
+    <li><a href="#modeapi" title="Writing CodeMirror Modes">Writing CodeMirror Modes</a></li>
+    <li><a href="#vimapi" title="Vim Mode API">Vim Mode API</a>
       <ul>
-        <li><a href="#vimapi_configuration">Configuration</a></li>
-        <li><a href="#vimapi_extending">Extending VIM</a></li>
+        <li><a href="#vimapi_configuration" title="Configuration">Configuration</a></li>
+        <li><a href="#vimapi_extending" title="Extending VIM">Extending VIM</a></li>
       </ul>
     </li>
   </ul>
@@ -68,89 +69,60 @@
 
 <section class=first id=overview>
     <h2 style="position: relative">
-      User manual and reference guide
+      用户手册和参考指南
       <span style="color: #888; font-size: 1rem; position: absolute; right: 0; bottom: 0">version 5.19.1</span>
     </h2>
 
-    <p>CodeMirror is a code-editor component that can be embedded in
-    Web pages. The core library provides <em>only</em> the editor
-    component, no accompanying buttons, auto-completion, or other IDE
-    functionality. It does provide a rich API on top of which such
-    functionality can be straightforwardly implemented. See
-    the <a href="#addons">addons</a> included in the distribution,
-    and the <a href="https://github.com/codemirror/CodeMirror/wiki/CodeMirror-addons">list
-    of externally hosted addons</a>, for reusable
-    implementations of extra features.</p>
-
-    <p>CodeMirror works with language-specific modes. Modes are
-    JavaScript programs that help color (and optionally indent) text
-    written in a given language. The distribution comes with a number
-    of modes (see the <a href="../mode/"><code>mode/</code></a>
-    directory), and it isn't hard to <a href="#modeapi">write new
-    ones</a> for other languages.</p>
+    <p>CodeMirror是一个代码编辑器组件，可嵌入网页。核心库提供了<em>唯一</em>的编辑组件，快捷键、自动完成、或其他IDE的功能。它提供了丰富的API上即可实现这样的功能。看到<a href="#addons">插件</a>包含在分配和外部托管的<a href="https://github.com/codemirror/CodeMirror/wiki/CodeMirror-addons">插件列表</a>，附加功能实现。</p>
+    <p> CodeMirror使用特定的语言模式。模式库使用JavaScript编程、帮助色彩（和可选的缩进），并为不同的语言分配指定的模式（见<a href="../mode/"><code>mode/</code></a>目录），很容易实现一个<a href="#modeapi">新编辑器</a>。</p>
 </section>
 
 <section id=usage>
-    <h2>Basic Usage</h2>
+    <h2>基础使用</h2>
 
-    <p>The easiest way to use CodeMirror is to simply load the script
-    and style sheet found under <code>lib/</code> in the distribution,
-    plus a mode script from one of the <code>mode/</code> directories.
-    (See <a href="compress.html">the compression helper</a> for an
-    easy way to combine scripts.) For example:</p>
+    <p>使用CodeMirror的最简单的方法是简单地加载<code>lib/</code>目录下的codemirror.js和codemirror.css,
+    再加上<code>mode/</code>目录下的一个模式modaName.js文件就行了：
+    (查看 <a href="compress.html">压缩文件助手</a> 可以简单地拼合所需要的js文件) 示例:</p>
 
     <pre data-lang="text/html">&lt;script src="lib/codemirror.js">&lt;/script>
 &lt;link rel="stylesheet" href="lib/codemirror.css">
 &lt;script src="mode/javascript/javascript.js">&lt;/script></pre>
 
-    <p>(Alternatively, use a module loader. <a href="#modloader">More
-    about that later.</a>)</p>
+    <p>(又或者使用模块加载方式:<a href="#modloader">点此查看模块加载</a>)</p>
 
-    <p>Having done this, an editor instance can be created like
-    this:</p>
+    <p>然后, 就能创建一个编辑器实例了:</p>
 
     <pre data-lang="javascript">var myCodeMirror = CodeMirror(document.body);</pre>
 
-    <p>The editor will be appended to the document body, will start
-    empty, and will use the mode that we loaded. To have more control
-    over the new editor, a configuration object can be passed
-    to <a href="#CodeMirror"><code>CodeMirror</code></a> as a second
-    argument:</p>
+    <p>编辑器会被附加到body内，并且将使用前面加载的mode。要对新的编辑器进行更多控制，可以将配置以json方式作为第二个参数传给<a href="#CodeMirror"><code>CodeMirror()</code></a> :</p>
 
     <pre data-lang="javascript">var myCodeMirror = CodeMirror(document.body, {
   value: "function myScript(){return 100;}\n",
   mode:  "javascript"
 });</pre>
 
-    <p>This will initialize the editor with a piece of code already in
-    it, and explicitly tell it to use the JavaScript mode (which is
-    useful when multiple modes are loaded).
-    See <a href="#config">below</a> for a full discussion of the
-    configuration options that CodeMirror accepts.</p>
+    <p>以上代码会初始化编辑器，同时在编辑器内添上value设定的代码片段，并明确指定使用javascript的代码编辑模式（用于指定编辑器里的代码的高亮方式，当加载了多种mode的时候很有用）。</p>
+    <p><a href="#config">查看配置说明</a></p>
+    <p>但有时候，若不想将编辑器添加到某元素内，而是希望能更好地控制其添加方式，那么可以在<code>CodeMirror()</code>调用时使用函数作为第1个参数，该函数用于将编辑器放到指定元素内。例如，使用一个真正的编辑器替换textarea：</p>
 
-    <p>In cases where you don't want to append the editor to an
-    element, and need more control over the way it is inserted, the
-    first argument to the <code>CodeMirror</code> function can also
-    be a function that, when given a DOM element, inserts it into the
-    document somewhere. This could be used to, for example, replace a
-    textarea with a real editor:</p>
+    <pre data-lang="javascript">var myCodeMirror = CodeMirror(
+      function(elt) {
+        myTextArea.parentNode.replaceChild(elt, myTextArea);
+      },
+      {
+        value: myTextArea.value
+      }
+);</pre>
 
-    <pre data-lang="javascript">var myCodeMirror = CodeMirror(function(elt) {
-  myTextArea.parentNode.replaceChild(elt, myTextArea);
-}, {value: myTextArea.value});</pre>
-
-    <p>However, for this use case, which is a common way to use
-    CodeMirror, the library provides a much more powerful
-    shortcut:</p>
+    <p>这是通常的做法，但CodeMirror还提供了一种更强大更常用的快捷方式：</p>
 
     <pre data-lang="javascript">var myCodeMirror = CodeMirror.fromTextArea(myTextArea);</pre>
 
-    <p>This will, among other things, ensure that the textarea's value
-    is updated with the editor's contents when the form (if it is part
-    of a form) is submitted. See the <a href="#fromTextArea">API
-    reference</a> for a full description of this method.</p>
+    <p>这方式可以确保在form提交时，textarea的值可以随着编辑器的值更新（前提该textarea属于该form）。</p>
+    <p><a href="#fromTextArea">fromTextArea完整的API 参考</a></p>
 
-    <h3 id=modloader>Module loaders</h3>
+
+    <h3 id=modloader>使用模块加载</h3>
 
     <p>The files in the CodeMirror distribution contain shims for
     loading them (and their dependencies) in AMD or CommonJS
@@ -199,308 +171,160 @@
 </section>
 
 <section id=config>
-    <h2>Configuration</h2>
+    <h2>配置说明</h2>
 
-    <p>Both the <a href="#CodeMirror"><code>CodeMirror</code></a>
-    function and its <code>fromTextArea</code> method take as second
-    (optional) argument an object containing configuration options.
-    Any option not supplied like this will be taken
-    from <a href="#defaults"><code>CodeMirror.defaults</code></a>, an
-    object containing the default options. You can update this object
-    to change the defaults on your page.</p>
+    <p>无论是使用<a href="#CodeMirror"><code>CodeMirror()</code></a>
+    函数或使用<code>CodeMirror.fromTextArea()</code>方法，都可以使用第2个参数传入配置选项，如果没有提供选项，则会使用<a href="#defaults"><code>CodeMirror.defaults</code></a>默认项, 您可以更改此对象的值作为默认值。
 
-    <p>Options are not checked in any way, so setting bogus option
-    values is bound to lead to odd errors.</p>
+    <p>注：选项一般不以任何方式进行检查，所以若设置错误选项，或会导致奇怪的错误。</p>
 
-    <p>These are the supported options:</p>
+    <p>options可使用的配置:</p>
 
     <dl>
       <dt id="option_value"><code><strong>value</strong>: string|CodeMirror.Doc</code></dt>
-      <dd>The starting value of the editor. Can be a string, or
-      a <a href="#api_doc">document object</a>.</dd>
+      <dd>编辑器的内容初始值，可以是 string 或 <a href="#api_doc">CodeMirror.doc</a>(CodeMirror文档对象。不是window.document)。 </dd>
 
       <dt id="option_mode"><code><strong>mode</strong>: string|object</code></dt>
-      <dd>The mode to use. When not given, this will default to the
-      first mode that was loaded. It may be a string, which either
-      simply names the mode or is
-      a <a href="http://en.wikipedia.org/wiki/MIME">MIME</a> type
-      associated with the mode. Alternatively, it may be an object
-      containing configuration options for the mode, with
-      a <code>name</code> property that names the mode (for
-      example <code>{name: "javascript", json: true}</code>). The demo
-      pages for each mode contain information about what configuration
-      parameters the mode supports. You can ask CodeMirror which modes
-      and MIME types have been defined by inspecting
-      the <code>CodeMirror.modes</code>
-      and <code>CodeMirror.mimeModes</code> objects. The first maps
+      <dd>编辑器模式. 当没有设定时, 默认使用第一个载入的mode文件. 它可以是一个字符串, 或者使用关联的<a href="http://en.wikipedia.org/wiki/MIME">MIME</a> 名称类型来设置. 除此外，也可以使用一个带有<code>name</code>属性的对象来作为值, (例如 <code>{name: "javascript", json: true}</code>). 每个模式的示例页面，都包含关于模式支持的配置参数信息。 可以查看<code>CodeMirror.modes</code>
+      和 <code>CodeMirror.mimeModes</code> 中的mode和MIME定义. The first maps
       mode names to their constructors, and the second maps MIME types
       to mode specs.</dd>
 
       <dt id="option_lineSeparator"><code><strong>lineSeparator</strong>: string|null</code></dt>
-      <dd>Explicitly set the line separator for the editor. By default
-      (value <code>null</code>), the document will be split on CRLFs
-      as well as lone CRs and LFs, and a single LF will be used as
-      line separator in all output (such
-      as <a href="#getValue"><code>getValue</code></a>). When a
-      specific string is given, lines will only be split on that
-      string, and output will, by default, use that same
-      separator.</dd>
+      <dd>指定编辑器要使用的换行符. 默认情况下(值为<code>null</code>), 文档会被 CRLFs
+      和单独的 CRs 与 LFs进行分割, 单一的 LF 将作为所有输出的换行符（如使用 <a href="#getValue"><code>getValue</code></a>时），若指定了换行符, 行将在该字符串上被拆分。</dd>
 
       <dt id="option_theme"><code><strong>theme</strong>: string</code></dt>
-      <dd>The theme to style the editor with. You must make sure the
-      CSS file defining the corresponding <code>.cm-s-[name]</code>
-      styles is loaded (see
-      the <a href="../theme/"><code>theme</code></a> directory in the
-      distribution). The default is <code>"default"</code>, for which
-      colors are included in <code>codemirror.css</code>. It is
-      possible to use multiple theming classes at once—for
-      example <code>"foo bar"</code> will assign both
-      the <code>cm-s-foo</code> and the <code>cm-s-bar</code> classes
-      to the editor.</dd>
+      <dd>设定编辑器的主题风格。要使用主题，须保证名称为<code>.cm-s-[name]</code>
+      样式文件是加载了的。(name是theme的值)。 (见<a href="../theme/"><code>theme</code></a>主题目录)。默认主题是<code>"default"</code>, 已包含在<code>codemirror.css</code>文件中. <br />也可以一次加载多个主题样式，例如<code>"theme:foo bar"</code>，然后添加<code>cm-s-foo</code>和<code>cm-s-bar</code>这两类样式.</dd>
 
       <dt id="option_indentUnit"><code><strong>indentUnit</strong>: integer</code></dt>
-      <dd>How many spaces a block (whatever that means in the edited
-      language) should be indented. The default is 2.</dd>
+      <dd>缩进单位，数值为空格数，默认为2。</dd>
 
       <dt id="option_smartIndent"><code><strong>smartIndent</strong>: boolean</code></dt>
-      <dd>Whether to use the context-sensitive indentation that the
-      mode provides (or just indent the same as the line before).
-      Defaults to true.</dd>
+      <dd>是否自动缩进，设置是否根据上下文自动缩进（和上一行相同的缩进量）。默认为true。</dd>
 
       <dt id="option_tabSize"><code><strong>tabSize</strong>: integer</code></dt>
-      <dd>The width of a tab character. Defaults to 4.</dd>
+      <dd>tab字符的宽度，默认为4 。</dd>
 
       <dt id="option_indentWithTabs"><code><strong>indentWithTabs</strong>: boolean</code></dt>
-      <dd>Whether, when indenting, the first N*<code>tabSize</code>
-      spaces should be replaced by N tabs. Default is false.</dd>
+      <dd>在缩进时，是否需要把 N*<code>tabSize</code>宽度个空格替换成N个tab字符，默认为false。</dd>
 
       <dt id="option_electricChars"><code><strong>electricChars</strong>: boolean</code></dt>
-      <dd>Configures whether the editor should re-indent the current
-      line when a character is typed that might change its proper
-      indentation (only works if the mode supports indentation).
-      Default is true.</dd>
+      <dd>当输入可能会改变当前的缩进时，是否需要重新缩进（仅在mode支持缩进时有效）。默认值true. </dd>
 
       <dt id="option_specialChars"><code><strong>specialChars</strong>: RegExp</code></dt>
-      <dd>A regular expression used to determine which characters
-      should be replaced by a
-      special <a href="#option_specialCharPlaceholder">placeholder</a>.
-      Mostly useful for non-printing special characters. The default
-      is <code>/[\u0000-\u001f\u007f\u00ad\u200b-\u200f\u2028\u2029\ufeff]/</code>.</dd>
+      <dd>需要被占位符(<a href="#option_specialCharPlaceholder">placeholder</a>)替换的特殊字符的正则表达式。最常用的是非打印字符。默认值：<code>/[\u0000-\u0019\u00ad\u200b-\u200f\u2028\u2029\ufeff]/</code>。</dd>
+
       <dt id="option_specialCharPlaceholder"><code><strong>specialCharPlaceholder</strong>: function(char) → Element</code></dt>
-      <dd>A function that, given a special character identified by
-      the <a href="#option_specialChars"><code>specialChars</code></a>
-      option, produces a DOM node that is used to represent the
-      character. By default, a red dot (<span style="color: red">•</span>)
-      is shown, with a title tooltip to indicate the character code.</dd>
+      <dd>指定接收配置项<a href="#option_specialChars"><code>specialChars</code></a>
+      的值作为参数的函数, 该函数会产生一个用来显示指定字符的DOM节点. 默认是显示一个红点 (<span style="color: red">•</span>)
+      ，这个红点使用带有标题的tooltip来提示特殊编码.</dd>
 
       <dt id="option_rtlMoveVisually"><code><strong>rtlMoveVisually</strong>: boolean</code></dt>
-      <dd>Determines whether horizontal cursor movement through
-      right-to-left (Arabic, Hebrew) text is visual (pressing the left
-      arrow moves the cursor left) or logical (pressing the left arrow
-      moves to the next lower index in the string, which is visually
-      right in right-to-left text). The default is <code>false</code>
-      on Windows, and <code>true</code> on other platforms.</dd>
+      <dd>指定是否使用水平光标移动方向为right-to-left文字视觉 (箭头向左移动光标)或逻辑(按下左箭头移动到下一个文本索引, 这是常规的视觉right-to-left文本). 默认值是 <code>false</code>，在电脑系统, 在平板或手机上则是<code>true</code></dd>
 
       <dt id="option_keyMap"><code><strong>keyMap</strong>: string</code></dt>
-      <dd>Configures the key map to use. The default
-      is <code>"default"</code>, which is the only key map defined
-      in <code>codemirror.js</code> itself. Extra key maps are found in
-      the <a href="../keymap/"><code>key map</code></a> directory. See
-      the <a href="#keymaps">section on key maps</a> for more
-      information.</dd>
+      <dd>定制快捷键. 默认是<code>"default"</code>, default的快捷键映射已定义在<code>codemirror.js</code>中. 扩展的在<a href="../keymap/"><code>key map</code></a> 目录. 见<a href="#keymaps">section on key maps</a> 更多信息.</dd>
 
       <dt id="option_extraKeys"><code><strong>extraKeys</strong>: object</code></dt>
-      <dd>Can be used to specify extra key bindings for the editor,
-      alongside the ones defined
-      by <a href="#option_keyMap"><code>keyMap</code></a>. Should be
-      either null, or a valid <a href="#keymaps">key map</a> value.</dd>
+      <dd>为编辑器指定<a href="#option_keyMap"><code>keyMap</code></a>之外的不同快捷键。注意是未被占用的有效的。</dd>
 
       <dt id="option_lineWrapping"><code><strong>lineWrapping</strong>: boolean</code></dt>
-      <dd>Whether CodeMirror should scroll or wrap for long lines.
-      Defaults to <code>false</code> (scroll).</dd>
+      <dd>一行文字过长时，使用换行(wrap)还是滚动(scroll)，默认为<code>false</code>滚动(scroll)。</dd>
 
       <dt id="option_lineNumbers"><code><strong>lineNumbers</strong>: boolean</code></dt>
-      <dd>Whether to show line numbers to the left of the editor.</dd>
+      <dd>是否在编辑器的左侧显示行号。默认true</dd>
 
       <dt id="option_firstLineNumber"><code><strong>firstLineNumber</strong>: integer</code></dt>
-      <dd>At which number to start counting lines. Default is 1.</dd>
+      <dd>行号数字从哪个数值开始，默认值为 1。</dd>
 
       <dt id="option_lineNumberFormatter"><code><strong>lineNumberFormatter</strong>: function(line: integer) → string</code></dt>
-      <dd>A function used to format line numbers. The function is
-      passed the line number, and should return a string that will be
-      shown in the gutter.</dd>
+      <dd>用于格式化行数的函数。该函数使用行号作为参数, 最后返回一个字符串显示在左侧的gutter.例如添加一个标记到指定行号</dd>
+
 
       <dt id="option_gutters"><code><strong>gutters</strong>: array&lt;string&gt;</code></dt>
-      <dd>Can be used to add extra gutters (beyond or instead of the
-      line number gutter). Should be an array of CSS class names, each
-      of which defines a <code>width</code> (and optionally a
-      background), and which will be used to draw the background of
-      the gutters. <em>May</em> include
-      the <code>CodeMirror-linenumbers</code> class, in order to
-      explicitly set the position of the line number gutter (it will
-      default to be to the right of all other gutters). These class
-      names are the keys passed
-      to <a href="#setGutterMarker"><code>setGutterMarker</code></a>.</dd>
+      <dd>可用作添加额外的gutter(在行号gutter前或代替行号gutter). 使用css名称数组，每项定义用于绘制gutter背景的<code>width</code>(和可选的background), <em>可能</em>要include<code>CodeMirror-linenumbers</code>类,为了能明确设置行号的position位置(默认是在所有其它的gutter右边). 类名是通过传给<a href="#setGutterMarker"><code>setGutterMarker</code></a>的键名(keys)</dd>
 
       <dt id="option_fixedGutter"><code><strong>fixedGutter</strong>: boolean</code></dt>
-      <dd>Determines whether the gutter scrolls along with the content
-      horizontally (false) or whether it stays fixed during horizontal
-      scrolling (true, the default).</dd>
+      <dd>设置gutter跟随编辑器内容水平滚动还是固定在左侧（false表示跟随，默认是true固定在左侧）。</dd>
 
       <dt id="option_scrollbarStyle"><code><strong>scrollbarStyle</strong>: string</code></dt>
-      <dd>Chooses a scrollbar implementation. The default
-      is <code>"native"</code>, showing native scrollbars. The core
-      library also provides the <code>"null"</code> style, which
-      completely hides the
-      scrollbars. <a href="#addon_simplescrollbars">Addons</a> can
-      implement additional scrollbar models.</dd>
+      <dd>设置滚动条. 默认值是<code>"native"</code>, 显示原生滚动条. 核心库还提供了<code>"null"</code>样式,可以完全隐藏滚动条. <a href="#addon_simplescrollbars">Addons</a> 可以设置更多的滚动条模式.</dd>
 
       <dt id="option_coverGutterNextToScrollbar"><code><strong>coverGutterNextToScrollbar</strong>: boolean</code></dt>
-      <dd>When <a href="#option_fixedGutter"><code>fixedGutter</code></a>
-      is on, and there is a horizontal scrollbar, by default the
-      gutter will be visible to the left of this scrollbar. If this
-      option is set to true, it will be covered by an element with
-      class <code>CodeMirror-gutter-filler</code>.</dd>
+      <dd>当<a href="#option_fixedGutter"><code>fixedGutter</code></a>启用, 并且存在水平滚动条时, 默认会在滚动条最左侧显示gutter. 当此项设为true时，gutter会被一个<code>class="CodeMirror-gutter-filler"</code>的element遮挡。</dd>
 
       <dt id="option_inputStyle"><code><strong>inputStyle</strong>: string</code></dt>
-      <dd>Selects the way CodeMirror handles input and focus. The core
-      library defines the <code>"textarea"</code>
-      and <code>"contenteditable"</code> input models. On mobile
-      browsers, the default is <code>"contenteditable"</code>. On
-      desktop browsers, the default is <code>"textarea"</code>.
-      Support for IME and screen readers is better in
-      the <code>"contenteditable"</code> model. The intention is to
-      make it the default on modern desktop browsers in the
-      future.</dd>
+      <dd>选择CodeMirror处理输入和获得焦点的方式. 核心库定义了 <code>"textarea"</code>
+      和 <code>"contenteditable"</code> 输入模式.在移动浏览器里, 默认是 <code>"contenteditable"</code>.桌面浏览器则是<code>"textarea"</code>.在 <code>"contenteditable"</code> 模式下，对IME和屏幕阅读器的支持更友好。期望在未来的桌面浏览器中同样可设成默认。</dd>
 
       <dt id="option_readOnly"><code><strong>readOnly</strong>: boolean|string</code></dt>
-      <dd>This disables editing of the editor content by the user. If
-      the special value <code>"nocursor"</code> is given (instead of
-      simply <code>true</code>), focusing of the editor is also
-      disallowed.</dd>
+      <dd>设置编辑器是否只读. 如果设置为<code>"nocursor"</code>，(而不是简单的<code>true</code>), 那么编辑区域将禁用获得焦点.</dd>
 
       <dt id="option_showCursorWhenSelecting"><code><strong>showCursorWhenSelecting</strong>: boolean</code></dt>
-      <dd>Whether the cursor should be drawn when a selection is
-      active. Defaults to false.</dd>
+      <dd>在有选择区时是否显示光标，默认为false。</dd>
 
       <dt id="option_lineWiseCopyCut"><code><strong>lineWiseCopyCut</strong>: boolean</code></dt>
-      <dd>When enabled, which is the default, doing copy or cut when
-      there is no selection will copy or cut the whole lines that have
-      cursors on them.</dd>
+      <dd>自动操作光标所在的行，默认为true,当在复制或剪切时没有被选择的文本，就会自动操作光标所在的整行.</dd>
 
       <dt id="option_undoDepth"><code><strong>undoDepth</strong>: integer</code></dt>
-      <dd>The maximum number of undo levels that the editor stores.
-      Note that this includes selection change events. Defaults to
-      200.</dd>
+      <dd>允许保存的最大操作撤消次数（包括选中内容发生改变事件），默认为200 。</dd>
 
       <dt id="option_historyEventDelay"><code><strong>historyEventDelay</strong>: integer</code></dt>
-      <dd>The period of inactivity (in milliseconds) that will cause a
-      new history event to be started when typing or deleting.
-      Defaults to 1250.</dd>
+      <dd>在输入或删除时的静止时间（以毫秒为单位），超过将触发新的历史事件。默认为1250。</dd>
 
       <dt id="option_tabindex"><code><strong>tabindex</strong>: integer</code></dt>
-      <dd>The <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex">tab
-      index</a> to assign to the editor. If not given, no tab index
-      will be assigned.</dd>
+      <dd>编辑器的tabindex。 <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex">tab
+      index</a>分配给编辑器。如果没有给出，则不设置tab index。</dd>
 
       <dt id="option_autofocus"><code><strong>autofocus</strong>: boolean</code></dt>
-      <dd>Can be used to make CodeMirror focus itself on
-      initialization. Defaults to off.
-      When <a href="#fromTextArea"><code>fromTextArea</code></a> is
-      used, and no explicit value is given for this option, it will be
-      set to true when either the source textarea is focused, or it
-      has an <code>autofocus</code> attribute and no other element is
-      focused.</dd>
+      <dd>是否在初始化编辑器时自动获得焦点，默认关闭.但当使用<a href="#fromTextArea"><code>fromTextArea</code></a> 时, 并且没有明确指定该项值，它会自动设置为true。</dd>
     </dl>
 
-    <p>Below this a few more specialized, low-level options are
-    listed. These are only useful in very specific situations, you
-    might want to skip them the first time you read this manual.</p>
+    <p>************<br />下面这几个是专业的较少使用的选项.这些只在非常特殊的情况下使用，如果是简单使用，建议直接跳过。</p>
 
     <dl>
       <dt id="option_dragDrop"><code><strong>dragDrop</strong>: boolean</code></dt>
-      <dd>Controls whether drag-and-drop is enabled. On by default.</dd>
+      <dd>是否允许拖放，默认true。</dd>
 
       <dt id="option_allowDropFileTypes"><code><strong>allowDropFileTypes</strong>: array&lt;string&gt;</code></dt>
-      <dd>When set (default is <code>null</code>) only files whose
-      type is in the array can be dropped into the editor. The strings
-      should be MIME types, and will be checked against
-      the <a href="https://w3c.github.io/FileAPI/#dfn-type"><code>type</code></a>
-      of the <code>File</code> object as reported by the browser.</dd>
+      <dd>默认为null。当设置此项时，只接收包含在此数组内的文件类型拖入编辑器。文件类型为MIME名称。默认值是<code>null</code>， 只允许在数组中的类型拖入编辑器. 文件类型是指<a href="https://w3c.github.io/FileAPI/#dfn-type"><code>MIME types</code></a></dd>
 
       <dt id="option_cursorBlinkRate"><code><strong>cursorBlinkRate</strong>: number</code></dt>
-      <dd>Half-period in milliseconds used for cursor blinking. The default blink
-      rate is 530ms. By setting this to zero, blinking can be disabled. A
-      negative value hides the cursor entirely.</dd>
+      <dd>光标闪动的间隔周期，单位为毫秒。默认为530。当设置为0时，会禁用光标闪动。负数则会隐藏光标。</dd>
 
       <dt id="option_cursorScrollMargin"><code><strong>cursorScrollMargin</strong>: number</code></dt>
-      <dd>How much extra space to always keep above and below the
-      cursor when approaching the top or bottom of the visible view in
-      a scrollable document. Default is 0.</dd>
+      <dd>当光标靠近编辑器的可视区域边界时，光标与边界的上方和下方的距离。默认为0。</dd>
 
       <dt id="option_cursorHeight"><code><strong>cursorHeight</strong>: number</code></dt>
-      <dd>Determines the height of the cursor. Default is 1, meaning
-      it spans the whole height of the line. For some fonts (and by
-      some tastes) a smaller height (for example <code>0.85</code>),
-      which causes the cursor to not reach all the way to the bottom
-      of the line, looks better</dd>
+      <dd>光标的高度。默认为1，即撑满行高。对一些字体设置一个较小点的距离（例如<code>0.85</code>），会使光标看起来更好。</dd>
 
       <dt id="option_resetSelectionOnContextMenu"><code><strong>resetSelectionOnContextMenu</strong>: boolean</code></dt>
-      <dd>Controls whether, when the context menu is opened with a
-      click outside of the current selection, the cursor is moved to
-      the point of the click. Defaults to <code>true</code>.</dd>
-
+      <dd>设置当上下文菜单打开时，若在"当前选择文本"之外单击，是否将光标移动到"点击"处。默认为<code>true</code>.</dd>
       <dt id="option_workTime"><code id="option_wordkDelay"><strong>workTime</strong>, <strong>workDelay</strong>: number</code></dt>
-      <dd>Highlighting is done by a pseudo background-thread that will
-      work for <code>workTime</code> milliseconds, and then use
-      timeout to sleep for <code>workDelay</code> milliseconds. The
-      defaults are 200 and 300, you can change these options to make
-      the highlighting more or less aggressive.</dd>
+      <dd>高亮伪后台线程<code>workTime</code>时长, 然后使用timeout休息<code>workDelay</code>时长.默认是200和300, 通过设置使高亮时间更长或更短来改变影响性.</dd>
 
       <dt id="option_pollInterval"><code><strong>pollInterval</strong>: number</code></dt>
-      <dd>Indicates how quickly CodeMirror should poll its input
-      textarea for changes (when focused). Most input is captured by
-      events, but some things, like IME input on some browsers, don't
-      generate events that allow CodeMirror to properly detect it.
-      Thus, it polls. Default is 100 milliseconds.</dd>
+      <dd>指定CodeMirror向对应的textarea侦测文本变化的间隔时长。（获得焦点时）。大多数的输入都是通过事件捕获，但是有的输入法（如IME）在某些浏览器上并不会生成事件，因此让CodeMirror适当检测。默认为100毫秒。</dd>
 
       <dt id="option_flattenSpans"><code><strong>flattenSpans</strong>: boolean</code></dt>
-      <dd>By default, CodeMirror will combine adjacent tokens into a
-      single span if they have the same class. This will result in a
-      simpler DOM tree, and thus perform better. With some kinds of
-      styling (such as rounded corners), this will change the way the
-      document looks. You can set this option to false to disable this
-      behavior.</dd>
+      <dd>默认情况下, CodeMirror会将两个class相同的span合并成一个，以使DOM树更简单从而有更好的表现，有几种造型(例如圆角)，这将改变文档的外观. 通过将该项设置为false可禁用此功能。</dd>
 
       <dt id="option_addModeClass"><code><strong>addModeClass</strong>: boolean</code></dt>
-      <dd>When enabled (off by default), an extra CSS class will be
-      added to each token, indicating the
-      (<a href="#innerMode">inner</a>) mode that produced it, prefixed
-      with <code>"cm-m-"</code>. For example, tokens from the XML mode
-      will get the <code>cm-m-xml</code> class.</dd>
+      <dd>当启用(默认关闭)，会给每个标记添加额外的css类，指示 (<a href="#innerMode">inner</a>)产生它的模式, 前缀以<code>"cm-m-"</code>开头. 例如，通过XML模式产生的标记，将得到 <code>cm-m-xml</code>的class.</dd>
 
       <dt id="option_maxHighlightLength"><code><strong>maxHighlightLength</strong>: number</code></dt>
-      <dd>When highlighting long lines, in order to stay responsive,
-      the editor will give up and simply style the rest of the line as
-      plain text when it reaches a certain position. The default is
-      10 000. You can set this to <code>Infinity</code> to turn off
-      this behavior.</dd>
+      <dd>当需要高亮很长的行时，为了保持响应性能，如果到达某个临界点编辑器就会直接将其它行为设置为纯文本plain text,
+      当设置为<code>Infinity</code>时，可以关闭此功能。</dd>
 
       <dt id="option_viewportMargin"><code><strong>viewportMargin</strong>: integer</code></dt>
-      <dd>Specifies the amount of lines that are rendered above and
-      below the part of the document that's currently scrolled into
-      view. This affects the amount of updates needed when scrolling,
-      and the amount of work that such an update does. You should
-      usually leave it at its default, 10. Can be set
-      to <code>Infinity</code> to make sure the whole document is
-      always rendered, and thus the browser's text search works on it.
-      This <em>will</em> have bad effects on performance of big
-      documents.</dd>
+      <dd>指定当前滚动到视图中内容上方和下方要渲染的行数。这会影响到滚动时要更新的行数。通常情况下应该使用默认值10。可以设置值为<code>Infinity</code> <em>始终</em>渲染整个文档。注意：这样设置在处理大文档时会影响性能。</dd>
     </dl>
 </section>
 
 <section id=events>
-    <h2>Events</h2>
+    <h2>事件</h2>
 
     <p>Various CodeMirror-related objects emit events, which allow
     client code to react to various situations. Handlers for such
@@ -2579,7 +2403,7 @@ editor.setOption("extraKeys", {
         <dd>Optional <code>to</code> position that will be used by <code>pick()</code> instead
         of the global one passed with the full list of completions.</dd>
       </dl></dd>
-      
+
       <dd>The plugin understands the following options (the options object
       will also be passed along to the hinting function, which may
       understand additional options):

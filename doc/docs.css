@@ -278,3 +278,8 @@ strong {
 .field {
   border: 1px solid #A21313;
 }
+
+section > h2 ,
+section > h3 {
+  font-weight: 600;
+}
