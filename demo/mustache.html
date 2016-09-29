@@ -16,17 +16,19 @@
   <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
 
   <ul>
-    <li><a href="../index.html">Home</a>
-    <li><a href="../doc/manual.html">Manual</a>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+    <li><a href="../index.html">首页</a>
+    <li><a href="../doc/manual.html">手册</a>
   </ul>
   <ul>
-    <li><a class=active href="#">Overlay Parser</a>
+    <li><a class=active href="#">Overlay 叠加模式的使用</a>
+  </ul>
+  <ul>
+     <li><a href="https://github.com/codemirror/codemirror">Github-code</a>
   </ul>
 </div>
 
 <article>
-<h2>Overlay Parser Demo</h2>
+<h2>叠加语法高亮模式示例(overlayModa)</h2>
 <form><textarea id="code" name="code">
 <html>
   <body>
@@ -60,10 +62,5 @@ CodeMirror.defineMode("mustache", function(config, parserConfig) {
 var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "mustache"});
 </script>
 
-    <p>Demonstration of a mode that parses HTML, highlighting
-    the <a href="http://mustache.github.com/">Mustache</a> templating
-    directives inside of it by using the code
-    in <a href="../addon/mode/overlay.js"><code>overlay.js</code></a>. View
-    source to see the 15 lines of code needed to accomplish this.</p>
-
+    <p>HTML分析示范, 高亮<a href="http://mustache.github.com/">Mustache</a> 模板引擎语法代码。可以在 <a href="../addon/mode/overlay.js"><code>overlay.js</code></a>中查看源代码是如何完成叠加高亮的。</p>
   </article>
